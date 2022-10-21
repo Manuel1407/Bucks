@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  app:
+    container_name: teacher
+    image: reward_your_teacher
+    build: ./
+    depends_on:
+      - postgresqldb
+    ports:
+      - "5200:9001"
+    environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqldb:5432/
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=postgres
+  postgresqldb:
+    image: postgres
+    container_name: postgresqldb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=rewardyourteacher_db
+    networks:
+      - postgres
+    volumes:
+      - postgres:/data/postgres
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+networks:
+  postgres:
+    driver: bridge
+volumes:
+  postgres:
+  pgadmin:
+
+
+
+
+
+
