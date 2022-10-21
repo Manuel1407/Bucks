@@ -1,0 +1,62 @@
+server:
+  port: 9001
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5438/rewardyourteacher_db
+    password: 123456
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        format_sql: true
+    show-sql: false
+  main:
+    allow-circular-references: true
+  servlet:
+    multipart:
+      enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-authentication-method: post
+            client-id: 497659411913-gvk3f86dpuhhb5o1jra0hscp795lcane.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: https://localhost:9001/login/oauth2/code/google
+            scope:
+              - email
+              - profile
+  mail:
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: 'true'
+          auth: 'true'
+    host: smtp.gmail.com
+    username: TiamiyuKehinde5@gmail.com #<Login User to SMTP server>
+    password: ifuqujemeanhsvpr #<Login password to SMTP server>
+    port: '587'
+springdoc:
+  swagger-ui:
+    path: /api-docs
+
+jwt:
+  adminKey:
+    passwordpasswordpasswordpasswordpasswordpasswordpasswordpassword
+cloudinary_name:
+  wingsmarket
+cloudinary_api_key:
+  834576764474828
+cloudinary_api_secret:
+  UissCDu2wcYRHKAdfJ2yuppCVyM
+paystack_secret_key:
+  sk_test_20569b941fc404567b0eb805c313ab6c617fdd3d
+
+#  sk_test_4a9cc5c7ac230a48c417031a52010a676f5cd394
